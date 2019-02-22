@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+@inject HttpClient Http
+<div>
+    <List Source="@Summary" T="NavModel" ULClass="nav flex-column" LIClass="nav-item px-3">
+        <Item>
+            @string.Join(string.Empty, Enumerable.Repeat(" ", context.Deep.Count()))
+            <NavLink class="nav-link" href="@context.Url">
+                @context.DisplayName
+            </NavLink>
+        </Item>
+    </List>
+</div>
+
+<div>
+    @Body
+</div>
+
+@functions {
+
+    public IReadOnlyList<NavModel>
+Summary
+    { get; set; }
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        Summary = Contents
+            .Select(x => new NavModel { Tokens = x.Split('/').ToList() })
+            //.GroupBy(x => x.Deep, x => x)
+            //.OrderBy(x => string.Join("/", x.Key))
+            //.ThenBy(x => x.Count())
+            //.SelectMany(x => x)
+            .ToList();
+    }
+
+    private static IEnumerable<string>
+        RemoveLeaf(IEnumerable<string>
+            tokens)
+            => tokens.Reverse().Skip(1).Reverse();
+
+    private string[] Contents => new[]
+    {
+        "/README"
+    };
+}

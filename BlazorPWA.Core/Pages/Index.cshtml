@@ -1,0 +1,26 @@
+﻿@page "/{Category}/{topic}/{page}"
+@page "/{topic}/{page}"
+@page "/{page}"
+@page "/"
+
+<Render Renderer="md" Path="@Path">
+    <Loading>
+        <p>
+            Loading....
+        </p>
+    </Loading>
+    <Loaded>
+        <p>@context</p>
+    </Loaded>
+    <Error>
+        <p>something bad is happened.....</p>
+        <p>@context.ToString()</p>
+    </Error>
+</Render>
+
+@functions {
+    public string Path => string.Join("/", Category, Topic, Page);
+    [Parameter] string Category { get; set; } = string.Empty;
+    [Parameter] string Topic { get; set; } = string.Empty;
+    [Parameter] string Page { get; set; } = "README";
+}
