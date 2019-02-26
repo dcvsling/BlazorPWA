@@ -15,6 +15,6 @@ namespace BlazorPWA.Components.Components
         protected RenderFragment<RenderFragment> Body { get; set; }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
-            => builder.AddContent(0, Body, Source.ToRenderFrament(Item));
+            => builder.AddContent(0, Body, Source.Loop().Invoke(Item));
     }
 }

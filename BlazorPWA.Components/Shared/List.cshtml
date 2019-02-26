@@ -1,14 +1,12 @@
 ﻿@typeparam T
 @inherits ComponentBase
 
-<ul class="@ULClass">
-    @foreach (var item in Source)
-    {
-        <li class="@LIClass">
-            @Item(item)
-        </li>
-    }
-</ul>
+
+@foreach (var item in Source)
+{
+    @Item(item)
+}
+
 @functions {
     [Parameter] RenderFragment<T> Item { get; set; }
     [Parameter] IReadOnlyList<T> Source { get; set; }

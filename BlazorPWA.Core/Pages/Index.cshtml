@@ -1,7 +1,5 @@
-﻿@page "/{Category}/{topic}/{page}"
-@page "/{topic}/{page}"
+﻿@page "/"
 @page "/{page}"
-@page "/"
 
 <Render Renderer="md" Path="@Path">
     <Loading>
@@ -19,8 +17,6 @@
 </Render>
 
 @functions {
-    public string Path => string.Join("/", Category, Topic, Page);
-    [Parameter] string Category { get; set; } = string.Empty;
-    [Parameter] string Topic { get; set; } = string.Empty;
+    public string Path => string.Join("/", Page);
     [Parameter] string Page { get; set; } = "README";
 }

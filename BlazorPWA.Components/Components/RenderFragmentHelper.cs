@@ -42,13 +42,20 @@ namespace BlazorPWA.Components.Components
             => sub => seq
                 .Aggregate(sub, Render(itemTemlpate));
 
-        private static Func<RenderTreeBuilder, T, RenderTreeBuilder> Render<T>(RenderFragment<T> itemTemlpate)
+        public static Func<RenderTreeBuilder, T, RenderTreeBuilder> Render<T>(this RenderFragment<T> itemTemlpate)
             => (b, t) =>
             {
                 itemTemlpate(t).Invoke(b);
                 return b;
             };
-
+        public static RenderFragment<RenderFragment<T>> Loop<T>(this IReadOnlyList<T> Source)
+            => Item => builder =>
+             {
+                 foreach (var item in Source)
+                 {
+                     builder.AddContent(0, Item(item));
+                 }
+             };
         //public static RenderFragment ToRenderFrament<T>(
         //    this IEnumerable<T> seq,
         //    int numb,
