@@ -2,19 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <base href="BlazorPWA/" />
     <meta name="viewport" content="width=device-width" />
     <title>BlazorPWA.Core</title>
     <base href="/" />
-    <link href="BlazorPWA/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="BlazorPWA/css/website.css">
-    <link rel="stylesheet" href="BlazorPWA/css/theme-api.css">
-    <link href="BlazorPWA/css/site.css" rel="stylesheet" />
-    <link rel="manifest" href="BlazorPWA/manifest.json" />
-    <link rel="script" href="BlazorPWA/sw.js">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/website.css">
+    <link rel="stylesheet" href="css/theme-api.css">
+    <link href="css/site.css" rel="stylesheet" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="script" href="sw.js">
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
-                navigator.serviceWorker.register('BlazorPWA/sw.js');
+                navigator.serviceWorker.register('sw.js');
             });
         }
     </script>
@@ -23,7 +24,7 @@
 <body>
 
     <app>Loading...</app>
-    <script src="BlazorPWA/_framework/components.webassembly.js"></script>
+    <script src="_framework/components.webassembly.js"></script>
 
 </body>
 </html>
