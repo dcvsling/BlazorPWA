@@ -36,8 +36,4 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Directive\" />
-  </ItemGroup>
 </Project>

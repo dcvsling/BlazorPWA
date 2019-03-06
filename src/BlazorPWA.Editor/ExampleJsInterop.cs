@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace BlazorPWA.Editor
 {
-    public class ExampleJsInterop
+    public static class ExampleJsInterop
     {
-        public static Task<string> Prompt(string message)
+        public static Task<string> Prompt(IJSRuntime js, string message)
         {
             // Implemented in exampleJsInterop.js
-            return JSRuntime.Current.InvokeAsync<string>(
+            return js.InvokeAsync<string>(
                 "exampleJsFunctions.showPrompt",
                 message);
         }

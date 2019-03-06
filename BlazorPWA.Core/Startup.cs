@@ -3,7 +3,6 @@ using BlazorPWA.Core.Renders;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Markdig;
-using Microsoft.Extensions.Configuration;
 
 namespace BlazorPWA.Core
 {
@@ -11,7 +10,6 @@ namespace BlazorPWA.Core
     {
         public void ConfigureServices(IServiceCollection services)
             => services
-                .AddSingleton<IConfiguration>(_ => new ConfigurationBuilder().AddJsonFile("App.settings.json", true, true).Build())
                 .AddOptions()
                 .AddTransient<IContentProvider, GithubMdContentProvider>()
                 .AddSingleton<IHtmlParser, MarkdownHtmlParser>()

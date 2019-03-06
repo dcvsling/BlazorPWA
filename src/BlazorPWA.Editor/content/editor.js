@@ -46,5 +46,14 @@ windows.editor = {
         console.debug(`Setting value to success.`);
 
         return editorModel;
+    },
+    Initial: (global) => {
+        global.s
     }
+
 };
+
+<script>var require = { paths: { 'vs': 'editor' } };</script>
+<script src="editor/loader.js"></script>
+<script src="editor/editor/editor.main.nls.js"></script>
+<script src="editor/editor/editor.main.js"></script>

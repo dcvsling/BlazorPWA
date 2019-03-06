@@ -10,43 +10,17 @@ namespace BlazorPWA.Core.Renders
     {
         private readonly HttpClient _http;
         private readonly IHtmlParser _parser;
+        private readonly ContentOptions _options;
 
-        public GithubMdContentProvider(HttpClient http, IHtmlParser parser)
+        public GithubMdContentProvider(HttpClient http, IHtmlParser parser,IOptions<ContentOptions> options)
         {
             _http = http;
             _parser = parser;
+            _options = options.Value;
         }
 
         async public Task<string> GetAsync(string type, string path)
             => _parser.ToHtml(path, await _http.GetStringAsync($"{type}/{path}.{type}"));
-    }
-
-
-    internal class MarkdownHtmlParser : IHtmlParser
-    {
-        private readonly IOptionsSnapshot<MarkdownPipelineBuilder> _snapshot;
-        private readonly IDictionary<string, MarkdownPipeline> _pipelines;
-        public MarkdownHtmlParser(IOptionsSnapshot<MarkdownPipelineBuilder> snapshot)
-        {
-            _snapshot = snapshot;
-            _pipelines = new Dictionary<string, MarkdownPipeline>();
-        }
-
-        public string ToHtml(string name, string md)
-            => Markdown.ToHtml(md, GetOrAdd(name));
-
-        private MarkdownPipeline GetOrAdd(string name)
-        {
-            if (_pipelines.ContainsKey(name)) return _pipelines[name];
-            _pipelines.Add(name, _snapshot.Get(name).Build());
-            return _pipelines[name];
-
-        }
-    }
-
-    public interface IHtmlParser
-    {
-        string ToHtml(string name, string md);
     }
 
 }
